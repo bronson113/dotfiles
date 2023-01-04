@@ -359,8 +359,8 @@ nnoremap <leader>d <ESC>:!./a.out<CR>
 
 if has("autocmd")
     augroup templates
-        autocmd BufNewFile exp.py 0r ~/.vim/templates/pwn.tmp
-        autocmd BufNewFile *.cpp 0r ~/.vim/templates/cpp.tmp
+        autocmd BufNewFile exp.py 0r ~/.vim/templates/pwn_tmp.py
+        autocmd BufNewFile *.cpp 0r ~/.vim/templates/tmp.cpp
     augroup END
 endif
 
