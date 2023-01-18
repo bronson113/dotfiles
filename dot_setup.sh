@@ -8,7 +8,7 @@ function dotconfig {
     /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
 }
 mkdir -p .config-backup
-
+dotconfig checkout
 # update the files
 if [ $? = 0 ]; then
     echo "Checked out config.";
