@@ -15,6 +15,7 @@ Contains my configuration file for
 ## Setup script
 
 ```bash
+sudo apt update
 sudo apt install git gdb vim tmux
 curl -Lks https://raw.githubusercontent.com/bronson113/dotfiles/master/dot_setup.sh | /bin/bash
 ```
