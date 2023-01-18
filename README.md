@@ -32,5 +32,10 @@ curl -Lks https://raw.githubusercontent.com/bronson113/dotfiles/master/dot_setup
 source ~/.bashrc
 ```
 
+## Backup Current Setting
 
+use the backup script to backup all dotfile and tagged with the current time
+```
+~/backup.sh
+```
 
