@@ -1,4 +1,4 @@
-source /home/bronson/.gdbinit-gef.py
+source ~/.gdbinit-gef.py
 #source ~/peda/peda.py
 #source ~/Pwngdb/pwngdb.py
 source ~/Pwngdb/angelheap/gdbinit.py
