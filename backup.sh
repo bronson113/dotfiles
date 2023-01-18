@@ -30,3 +30,4 @@ fi
 
 # push to Github
 dotconfig commit -a -m "Backup_`date +'%Y-%m-%d_%H:%M:%S'`"
+dotconfig push
