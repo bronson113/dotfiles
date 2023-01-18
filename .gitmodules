@@ -4,3 +4,6 @@
 [submodule "Pwngdb"]
 	path = Pwngdb
 	url = https://github.com/scwuaptx/Pwngdb.git
+[submodule "mktmpdir"]
+	path = mktmpdir
+	url = https://github.com/bronson113/mktmpdir.git

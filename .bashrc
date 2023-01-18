@@ -95,6 +95,9 @@ alias python='python3'
 alias desk='cd /mnt/c/Users/brons'
 alias ctf='cd /mnt/c/Users/brons/ctf'
 alias dotconfig='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias mktmpdir='source $HOME/mktmpdir.sh'
+alias mktempdir='source $HOME/mktmpdir.sh'
+
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
