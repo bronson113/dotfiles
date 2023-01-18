@@ -13,6 +13,7 @@ function dotconfig {
     /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
 }
 
+
 # Check git status
 gs="$(dotconfig status | grep -i "modified")"
 
@@ -24,5 +25,4 @@ fi
 
 
 # push to Github
-dotconfig commit -am "Backup `date +'%Y-%m-%d %H:%M:%S'`";
-dotconfig push
+dotconfig commit -a -m "Backup_`date +'%Y-%m-%d_%H:%M:%S'`"
