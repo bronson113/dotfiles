@@ -14,10 +14,23 @@ Contains my configuration file for
 
 ## Setup script
 
+as user:
 ```bash
 sudo apt update
-sudo apt install git gdb vim tmux
+sudo apt install -y curl git gdb vim tmux
+cd
 curl -Lks https://raw.githubusercontent.com/bronson113/dotfiles/master/dot_setup.sh | /bin/bash
+source ~/.bashrc
 ```
+
+as root:
+```bash
+apt update
+apt install -y curl git gdb vim tmux
+cd
+curl -Lks https://raw.githubusercontent.com/bronson113/dotfiles/master/dot_setup.sh | /bin/bash
+source ~/.bashrc
+```
+
 
 
