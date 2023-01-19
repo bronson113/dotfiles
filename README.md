@@ -11,6 +11,7 @@ Contains my configuration file for
 - gdb
   - gef
   - binsync + decompiler to debugger
+- git config
 
 ## Setup script
 
