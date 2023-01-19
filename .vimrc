@@ -226,6 +226,10 @@ nnoremap ; :
 " nnoremap <F6> <ESC>:w<CR>:!Rscript %<CR>
 nnoremap <Leader>r <ESC>:w<CR>:!python3 %<CR>
 nnoremap <Leader>R <ESC>:w<CR>:!python3 % DEBUG<CR>
+nnoremap <leader>p <ESC>:/<++><CR>n:nohl<CR>4s
+nnoremap <leader><leader> <ESC>:nohl<CR>
+nnoremap <leader>c <ESC>:w<CR>:!g++ -std=c++17 -O2 -Wall -Wextra -Wshadow %<CR>
+nnoremap <leader>d <ESC>:!./a.out<CR>
 " nnoremap <F9> <ESC>:w<CR>:!g++ -std=c++17 -O2 -Wall -Wextra -Wshadow %<CR>
 " nnoremap <F10> :!./a.out<CR>
 " nnoremap <F11> :!./a.out < in<CR>
@@ -234,6 +238,7 @@ nnoremap <Leader>R <ESC>:w<CR>:!python3 % DEBUG<CR>
 " Create new buffer on split
 nnoremap <Leader>n <ESC>:vnew<CR>
 nnoremap <Leader>f <ESC>:Files<CR>
+
 
 " for pane moving
 nnoremap <C-J> <C-W><C-J>
@@ -351,11 +356,6 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 "  return !col || getline('.')[col - 1]  =~# '\s'
 "endfunction
 
-nnoremap <leader>p <ESC>:/<++><CR>n:nohl<CR>4s
-nnoremap <leader><leader> <ESC>:nohl<CR>
-nnoremap <leader>r <ESC>:w<CR>:!python3 %<CR>
-nnoremap <leader>c <ESC>:w<CR>:!g++ -std=c++17 -O2 -Wall -Wextra -Wshadow %<CR>
-nnoremap <leader>d <ESC>:!./a.out<CR>
 
 if has("autocmd")
     augroup templates
