@@ -1,25 +1,36 @@
 #!/usr/bin/python3
+
 from pwn import *
-from ctypes import CDLL
+# from ctypes import CDLL
 
+{bindings}
+
+context.binary = {bin_name}
 context.terminal = ["tmux", "splitw", "-h"]
-context.binary = binary_name = "<++>"
-elf = context.binary
 
-# libc = ELF("<++>")
-# libc_func = CDLL("<++>")
-gdb_script = """
-<++>
-"""
 
-nc_str = "<++>"
-if REMOTE:
-    _, host, port = nc_str.split(" ")
-    p = remote(host, int(port))
-else:
-    p = process(binary_name)
+def connect():
+    if args.REMOTE:
+        nc_str = "<++>"
+        _, host, port = nc_str.split(" ")
+        p = remote(host, int(port))
 
-pause = input()
-#gdb.attach(p, gdb_script)
-p.interactive()
+    else:
+        p = process({proc_args})
+        if args.DEBUG:
+            gdb_script = """
+            """
+            gdb.attach(p, gdb_script)
+
+    return p
+
+
+def main():
+    p = connect()
+    p.interactive()
+
+
+if __name__ == "__main__":
+    pause = input()
+    main()
 

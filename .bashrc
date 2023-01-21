@@ -92,6 +92,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias python='python3'
+alias pwninit='pwninit --template-path ~/.vim/templates/pwn_tmp.py --template-bin-name elf'
 alias desk='cd /mnt/c/Users/brons'
 alias ctf='cd /mnt/c/Users/brons/ctf'
 alias dotconfig='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -122,3 +123,4 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+. "$HOME/.cargo/env"
