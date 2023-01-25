@@ -361,6 +361,7 @@ if has("autocmd")
     augroup templates
         autocmd BufNewFile exp.py 0r ~/.vim/templates/pwn_tmp.py
         autocmd BufNewFile *.cpp 0r ~/.vim/templates/tmp.cpp
+        autocmd BufNewFile *.c 0r ~/.vim/templates/tmp.cpp
     augroup END
 endif
 
