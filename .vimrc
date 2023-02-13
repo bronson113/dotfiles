@@ -230,6 +230,7 @@ nnoremap <leader>p <ESC>:/<++><CR>n:nohl<CR>4s
 nnoremap <leader><leader> <ESC>:nohl<CR>
 nnoremap <leader>c <ESC>:w<CR>:!g++ -std=c++17 -O2 -Wall -Wextra -Wshadow %<CR>
 nnoremap <leader>d <ESC>:!./a.out<CR>
+nnoremap <C-Y> <C-r>
 " nnoremap <F9> <ESC>:w<CR>:!g++ -std=c++17 -O2 -Wall -Wextra -Wshadow %<CR>
 " nnoremap <F10> :!./a.out<CR>
 " nnoremap <F11> :!./a.out < in<CR>

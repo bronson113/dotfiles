@@ -29,4 +29,8 @@ git clone https://github.com/bronson113/mktmpdir.git
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim +PlugUpgrade +PlugUpdate +PlugInstall +q
 
+# setup coc.nvim
+cd ~/.vim/plugged/coc.nvim
+npm install
+
 
