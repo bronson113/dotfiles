@@ -3,12 +3,10 @@
 from pwn import *
 # from ctypes import CDLL
 
+{bindings}
 
-context.binary = bin_name = "<++>"
+context.binary = {bin_name}
 context.terminal = ["tmux", "splitw", "-h"]
-
-elf = ELF(bin_name)
-#libc = ELF("<++>")
 
 
 def connect():
@@ -18,7 +16,7 @@ def connect():
         p = remote(host, int(port))
 
     else:
-        p = process(bin_name)
+        p = process({proc_args})
         if args.GDB:
             gdb_script = """
             """
