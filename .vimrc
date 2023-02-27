@@ -225,7 +225,7 @@ nnoremap ; :
 " TODO: compile according to filetype
 " nnoremap <F6> <ESC>:w<CR>:!Rscript %<CR>
 nnoremap <Leader>r <ESC>:w<CR>:!python3 %<CR>
-nnoremap <Leader>R <ESC>:w<CR>:!python3 % DEBUG<CR>
+nnoremap <Leader>R <ESC>:w<CR>:!python3 % DEBUG GDB<CR>
 nnoremap <leader>p <ESC>:/<++><CR>n:nohl<CR>4s
 nnoremap <leader><leader> <ESC>:nohl<CR>
 nnoremap <leader>c <ESC>:w<CR>:!g++ -std=c++17 -O2 -Wall -Wextra -Wshadow %<CR>
@@ -361,6 +361,8 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 if has("autocmd")
     augroup templates
         autocmd BufNewFile exp.py 0r ~/.vim/templates/pwn_tmp.py
+        autocmd BufNewFile solve.py 0r ~/.vim/templates/crypto_solve.py
+        autocmd BufNewFile solve.sage 0r ~/.vim/templates/crypto_solve.sage
         autocmd BufNewFile *.cpp 0r ~/.vim/templates/tmp.cpp
         autocmd BufNewFile *.c 0r ~/.vim/templates/tmp.cpp
     augroup END
