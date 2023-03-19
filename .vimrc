@@ -1,16 +1,33 @@
 " vim-plug start
 call plug#begin('~/.vim/plugged')
 
+" New commands
+Plug 'tpope/vim-repeat'
+" Add to surround
+Plug 'tpope/vim-surround'
+" Block comment
+Plug 'tpope/vim-commentary'
+" Replace word
+Plug 'vim-scripts/ReplaceWithRegister'
+" Copy to system clipboard
+Plug 'christoomey/vim-system-copy'
+
+" Custom text objects
+Plug 'kana/vim-textobj-user'
+
+
 " Coding Utils
 Plug 'luochen1990/rainbow'
 Plug 'alvan/vim-closetag'
 Plug 'Yggdroot/indentLine'
 " Plug 'zxqfl/tabnine-vim'
-Plug 'gcmt/wildfire.vim'
+" Plug 'gcmt/wildfire.vim'
 " Plug 'sjl/gundo.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
+
+" Track coding time
 Plug 'wakatime/vim-wakatime'
 
 
@@ -40,14 +57,14 @@ Plug 'maximbaz/lightline-trailing-whitespace'
 " Syntax Highlighting
 " Plug 'sheerun/vim-polyglot'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'jelera/vim-javascript-syntax'
+" Plug 'jelera/vim-javascript-syntax'
 " Plug 'posva/vim-vue'
-Plug 'leafOfTree/vim-vue-plugin'
-Plug 'udalov/kotlin-vim'
-Plug 'digitaltoad/vim-pug'
-Plug 'iloginow/vim-stylus'
+" Plug 'leafOfTree/vim-vue-plugin'
+" Plug 'udalov/kotlin-vim'
+" Plug 'digitaltoad/vim-pug'
+" Plug 'iloginow/vim-stylus'
 " Plug 'ollykel/v-vim'
-Plug 'jwalton512/vim-blade'
+" Plug 'jwalton512/vim-blade'
 
 " Unit Testing
 " Plug 'vim-test/vim-test'
@@ -61,6 +78,7 @@ filetype plugin indent on
 au BufRead,BufNewFile *.ino set filetype=cpp
 au BufRead,BufNewFile *.sage set filetype=python
 
+set nocompatible
 set nu rnu
 set showcmd
 set mouse=a
@@ -89,6 +107,7 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
+
 syntax enable
 syntax on
 
@@ -228,8 +247,8 @@ nnoremap <Leader>r <ESC>:w<CR>:!python3 %<CR>
 nnoremap <Leader>R <ESC>:w<CR>:!python3 % DEBUG GDB<CR>
 nnoremap <leader>p <ESC>:/<++><CR>n:nohl<CR>4s
 nnoremap <leader><leader> <ESC>:nohl<CR>
-nnoremap <leader>c <ESC>:w<CR>:!g++ -std=c++17 -O2 -Wall -Wextra -Wshadow %<CR>
-nnoremap <leader>d <ESC>:!./a.out<CR>
+" nnoremap <leader>c <ESC>:w<CR>:!g++ -std=c++17 -O2 -Wall -Wextra -Wshadow %<CR>
+" nnoremap <leader>d <ESC>:!./a.out<CR>
 nnoremap <C-Y> <C-r>
 " nnoremap <F9> <ESC>:w<CR>:!g++ -std=c++17 -O2 -Wall -Wextra -Wshadow %<CR>
 " nnoremap <F10> :!./a.out<CR>
@@ -238,6 +257,8 @@ nnoremap <C-Y> <C-r>
 
 " Create new buffer on split
 nnoremap <Leader>n <ESC>:vnew<CR>
+
+" Find file
 nnoremap <Leader>f <ESC>:Files<CR>
 
 
@@ -300,21 +321,21 @@ let g:cpp_concepts_highlight=1
 let c_no_curly_error=1
 
 " wildfire
-map <SPACE> <Plug>(wildfire-fuel)
+" map <ENTER> <Plug>(wildfire-fuel)
 " vmap <C-SPACE> <Plug>(wildfire-water)
-let g:wildfire_objects = {
-\   "*" : ["i'", 'i"', "i)", "i]", "i}"],
-\   "html,xml" : ["at", "it"],
-\ }
+" let g:wildfire_objects = {
+" \   "*" : ["i'", 'i"', "i)", "i]", "i}"],
+" \   "html,xml" : ["at", "it"],
+" \ }
 
 " gundo
-if has('python3')
-  let g:gundo_prefer_python3=1
-endif
-nnoremap <leader>h :GundoToggle<CR>
+" if has('python3')
+"   let g:gundo_prefer_python3=1
+" endif
+" nnoremap <leader>h :GundoToggle<CR>
 
 " vue
-let g:vue_pre_processors = ['pug']
+" let g:vue_pre_processors = ['pug']
 
 " ale
 let g:ale_linters = {
@@ -347,17 +368,24 @@ let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
 " coc
 let g:coc_status_error_sign = 'x'
 " <TAB> navigation
-inoremap <silent><expr> <TAB> 
-       \ pumvisible() ? "\<C-n>" : "\<TAB>"
-"      \ <SID>check_back_space() ? "\<TAB>" :
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+          \: "\<CR>"
+
 
 "function! s:check_back_space() abort
 "  let col = col('.') - 1
 "  return !col || getline('.')[col - 1]  =~# '\s'
 "endfunction
 
-
+" Automatically load template files
 if has("autocmd")
     augroup templates
         autocmd BufNewFile exp.py 0r ~/.vim/templates/pwn_tmp.py
@@ -369,5 +397,7 @@ if has("autocmd")
 endif
 
 let g:coc_disable_startup_warning = 1
+
+" Curser appearence
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
