@@ -14,7 +14,9 @@ Plug 'christoomey/vim-system-copy'
 
 " Custom text objects
 Plug 'kana/vim-textobj-user'
-
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-line'
 
 " Coding Utils
 Plug 'luochen1990/rainbow'
