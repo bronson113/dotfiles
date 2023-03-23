@@ -6,6 +6,7 @@ Plug 'tpope/vim-repeat'
 " Add to surround
 Plug 'tpope/vim-surround'
 " Block comment
+" gc + motion to comment
 Plug 'tpope/vim-commentary'
 " Replace word
 Plug 'vim-scripts/ReplaceWithRegister'
@@ -33,8 +34,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'wakatime/vim-wakatime'
 
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
 
 " Coc
 Plug 'neoclide/coc.nvim'
@@ -43,7 +44,11 @@ Plug 'neoclide/coc.nvim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-"Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
+
+" ranger support
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
 
 " Colorscheme
 Plug 'joshdick/onedark.vim'
@@ -260,8 +265,8 @@ nnoremap <C-Y> <C-r>
 " Create new buffer on split
 nnoremap <Leader>n <ESC>:vnew<CR>
 
-" Find file
-nnoremap <Leader>f <ESC>:Files<CR>
+" " Find file
+" nnoremap <Leader>f <ESC>:Files<CR>
 
 
 " for pane moving
@@ -274,7 +279,7 @@ let g:NERDTreeGitStatusUseNerdFonts = 1
 " NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
 autocmd VimEnter * NERDTree | wincmd p " Open on startup and focus on the opened file
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " Close on exit
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " Close on exit
 " let NERDTreeIgnore=['\.pyc$', '\~$', 'node_modules'] " Ignore files in NERDTree
 let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
@@ -289,7 +294,7 @@ augroup nerdtree
   autocmd FileType nerdtree setlocal concealcursor=nvic
 augroup END
 
-" let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 
 " NERDCommenter
 let g:NERDSpaceDelims=1
@@ -298,6 +303,13 @@ let g:NERDDefaultAlign='left'
 let g:NERDCommentEmptyLines=1
 let g:NERDTrimTrailingWhitespace=1
 let g:NERDToggleCheckAllLines=1
+
+
+" open ranger when opening vim
+let g:NERDTreeHijackNetrw = 0
+let g:ranger_replace_netrw = 1
+" show hidden files too
+let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
 
 " Indent Guide
 " let g:indentLine_setColors = 0
@@ -322,8 +334,8 @@ let g:cpp_posix_standard=1
 let g:cpp_concepts_highlight=1
 let c_no_curly_error=1
 
-" wildfire
-" map <ENTER> <Plug>(wildfire-fuel)
+" " wildfire
+" map <CR> <Plug>(wildfire-fuel)
 " vmap <C-SPACE> <Plug>(wildfire-water)
 " let g:wildfire_objects = {
 " \   "*" : ["i'", 'i"', "i)", "i]", "i}"],
@@ -371,9 +383,11 @@ let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
 let g:coc_status_error_sign = 'x'
 " <TAB> navigation
 inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
+      \ coc#pum#visible() ? coc#pum#next(1) : "\<TAB>"
+" inoremap <silent><expr> <TAB>
+"       \ coc#pum#visible() ? coc#pum#next(1) :
+"       \ CheckBackspace() ? "\<Tab>" :
+"       \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
