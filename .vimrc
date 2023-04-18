@@ -275,6 +275,12 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-L> <C-W><C-L>
 
+" next buffer
+nnoremap <C-P> :bnext<CR>
+" previous buffer
+nnoremap <C-O> :bprevious<CR>
+
+
 let g:NERDTreeGitStatusUseNerdFonts = 1
 " NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
