@@ -1,5 +1,17 @@
 from Crypto.Util.number import long_to_bytes, bytes_to_long
+from subprocess import check_output
+from re import findall
+
 #from pwn import *
+#nc_str = "<++>"
+#_, host, port = nc_str.split(" ")
+#p = remote(host, int(port))
+
+# def flatter(M):
+#     # compile https://github.com/keeganryan/flatter and put it in $PATH
+#     z = "[[" + "]\n[".join(" ".join(map(str, row)) for row in M) + "]]"
+#     ret = check_output(["flatter"], input=z.encode())
+#     return matrix(M.nrows(), M.ncols(), map(int, findall(b"-?\\d+", ret)))
 
 # LLL (5*5 with weights)
 #weights = [1, 1, 1, 1/2^512, 1/2^504]
@@ -11,7 +23,7 @@ from Crypto.Util.number import long_to_bytes, bytes_to_long
 #    [q1, 0, 0, 0, 0],
 #    [0, q2, 0, 0, 0]])
 #L = L*Q
-#Sol = L.LLL()/Q
+#Sol = flatter(L)/Q
 #print(Sol) 
 
 
