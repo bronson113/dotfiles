@@ -42,7 +42,7 @@ Plug 'neoclide/coc.nvim'
 
 " Nerdtree related
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommnnter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 
@@ -402,8 +402,10 @@ if executable("node")
       return !col || getline('.')[col - 1]  =~# '\s'
     endfunction
 
-    " Use <c-space> to trigger completion.
-    inoremap <silent><expr> <c-@> coc#refresh()
+    " Use enter to trigger completion.
+    inoremap <silent><expr> <CR>
+          \ coc#pum#visible() ? coc#_select_confirm() :
+          \ "\<CR>"
 
 endif
 
