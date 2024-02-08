@@ -392,7 +392,7 @@ if executable("node")
     let g:coc_status_error_sign = 'x'
     
     inoremap <silent><expr> <TAB>
-          \ coc#pum#visible() ? coc#pum#next(1) :
+          \ coc#pum#visible() ? coc#_select_confirm() :
           \ CheckBackspace() ? "\<Tab>" :
           \ coc#refresh()
     inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
@@ -401,11 +401,6 @@ if executable("node")
       let col = col('.') - 1
       return !col || getline('.')[col - 1]  =~# '\s'
     endfunction
-
-    " Use enter to trigger completion.
-    inoremap <silent><expr> <CR>
-          \ coc#pum#visible() ? coc#_select_confirm() :
-          \ "\<CR>"
 
 endif
 
