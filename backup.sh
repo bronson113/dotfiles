@@ -29,5 +29,8 @@ fi
 
 
 # push to Github
-dotconfig commit -a -m "Backup_`date +'%Y-%m-%d_%H:%M:%S'`"
-dotconfig push
+UPDATE_COMMENT="\"Backup_`date +'%Y-%m-%d_%H:%M:%S'` $*\""
+dotconfig add -u
+echo dotconfig commit -m "$UPDATE_COMMENT"
+dotconfig commit -m "\$\{UPDATE_COMMENT\}"
+#dotconfig push

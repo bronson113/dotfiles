@@ -270,10 +270,19 @@ nnoremap <Leader>n <ESC>:vnew<CR>
 
 
 " for pane moving
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-H> <C-W><C-H>
-nnoremap <C-L> <C-W><C-L>
+function! TmuxMove(direction)
+        let wnr = winnr()
+        silent! execute 'wincmd ' . a:direction
+        " If the winnr is still the same after we moved, it is the last pane
+        if wnr == winnr()
+                call system('tmux select-pane -' . tr(a:direction, 'phjkl', 'lLDUR'))
+        end
+endfunction
+
+nnoremap <silent> <C-h> :call TmuxMove('h')<cr>
+nnoremap <silent> <C-j> :call TmuxMove('j')<cr>
+nnoremap <silent> <C-k> :call TmuxMove('k')<cr>
+nnoremap <silent> <C-l> :call TmuxMove('l')<cr>
 
 " next buffer
 nnoremap <C-P> :bnext<CR>

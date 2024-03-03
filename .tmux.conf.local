@@ -363,6 +363,17 @@ bind . split-window -h
 
 set -g default-terminal "xterm-256color"
 
+# Panel moving with vim integration
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+bind -n C-Up run-shell "if $is_vim ; then tmux send-keys C-k ; else tmux select-pane -U; fi"
+bind -n C-Down run-shell "if $is_vim ; then tmux send-keys C-j; else tmux select-pane -D; fi"
+bind -n C-Left run-shell "if $is_vim ; then tmux send-keys C-h; else tmux select-pane -L; fi"
+bind -n C-Right run-shell "if $is_vim ; then tmux send-keys C-l; else tmux select-pane -R; fi"
+bind -n C-k run-shell "if $is_vim ; then tmux send-keys C-k ; else tmux select-pane -U; fi"
+bind -n C-j run-shell "if $is_vim ; then tmux send-keys C-j; else tmux select-pane -D; fi"
+bind -n C-h run-shell "if $is_vim ; then tmux send-keys C-h; else tmux select-pane -L; fi"
+bind -n C-l run-shell "if $is_vim ; then tmux send-keys C-l; else tmux select-pane -R; fi"
 
 # -- custom variables ----------------------------------------------------------
 # to define a custom #{foo} variable, define a POSIX shell function between the
