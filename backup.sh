@@ -10,7 +10,7 @@ else
 fi
 
 function dotconfig {
-    /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
+    /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME "$@"
 }
 
 
@@ -29,8 +29,8 @@ fi
 
 
 # push to Github
-UPDATE_COMMENT="\"Backup_`date +'%Y-%m-%d_%H:%M:%S'` $*\""
+UPDATE_COMMENT_UNIQUE_SUFFIX_OWO="Backup_`date +'%Y-%m-%d_%H:%M:%S'` $*"
+
 dotconfig add -u
-echo dotconfig commit -m "$UPDATE_COMMENT"
-dotconfig commit -m "\$\{UPDATE_COMMENT\}"
-#dotconfig push
+dotconfig commit -m "${UPDATE_COMMENT_UNIQUE_SUFFIX_OWO}"
+dotconfig push

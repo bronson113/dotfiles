@@ -96,9 +96,11 @@ alias pwninit='pwninit --template-path ~/.vim/templates/pwninit_tmp.py --templat
 alias desk='cd /mnt/c/Users/brons'
 alias purdue='cd /mnt/c/Users/brons/purdue/2023_spring'
 alias ctf='cd /mnt/c/Users/brons/ctf'
-alias dotconfig='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias mktmpdir='source $HOME/mktmpdir/mktmpdir.sh'
 alias mktempdir='source $HOME/mktmpdir/mktmpdir.sh'
+
+# working with saving dotconfig
+alias dotconfig='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME "$@"'
 
 
 # Add an "alert" alias for long running commands.  Use like so:
