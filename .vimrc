@@ -292,7 +292,7 @@ nnoremap <C-O> :bprevious<CR>
 
 let g:NERDTreeGitStatusUseNerdFonts = 1
 " NERDTree
-noremap <C-n> :NERDTreeToggle<CR>
+noremap <C-n> :NERDTreeToggle<CR>:NERDTreeRefreshRoot<CR>
 autocmd VimEnter * NERDTree | wincmd p " Open on startup and focus on the opened file
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " Close on exit
 " let NERDTreeIgnore=['\.pyc$', '\~$', 'node_modules'] " Ignore files in NERDTree
