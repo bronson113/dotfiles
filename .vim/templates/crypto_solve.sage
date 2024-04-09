@@ -1,3 +1,4 @@
+#!/usr/bin/sage
 from Crypto.Util.number import long_to_bytes, bytes_to_long
 from subprocess import check_output
 from re import findall

@@ -1,3 +1,4 @@
+#!/usr/bin/python3.8
 from Crypto.Util.number import long_to_bytes, bytes_to_long
 from sage.all import *
 
