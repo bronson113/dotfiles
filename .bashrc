@@ -91,7 +91,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias python='python3'
+alias python='python3.10'
 alias pwninit='pwninit --template-path ~/.vim/templates/pwninit_tmp.py --template-bin-name elf'
 alias desk='cd /mnt/c/Users/brons'
 alias purdue='cd /mnt/c/Users/brons/purdue/2023_spring'
@@ -126,7 +126,10 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-. "$HOME/.cargo/env"
+
+if [ -f ~/.cargo/env ]; then
+    . "$HOME/.cargo/env"
+fi
 
 function ranger {
     local IFS=$'\t\n'
@@ -145,3 +148,8 @@ function ranger {
 }
 
 alias r='ranger'
+
+if [ -f ~/.asdf ]; then
+    . "$HOME/.asdf/asdf.sh"
+    . "$HOME/.asdf/completions/asdf.bash"
+fi
