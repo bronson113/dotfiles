@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=-1
+HISTFILESIZE=-1
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -94,7 +94,7 @@ alias l='ls -CF'
 alias python='python3.10'
 alias pwninit='pwninit --template-path ~/.vim/templates/pwninit_tmp.py --template-bin-name elf'
 alias desk='cd /mnt/c/Users/brons'
-alias purdue='cd /mnt/c/Users/brons/purdue/2023_spring'
+alias purdue='cd /mnt/c/Users/brons/purdue/2024-fall'
 alias ctf='cd /mnt/c/Users/brons/ctf'
 alias mktmpdir='source $HOME/mktmpdir/mktmpdir.sh'
 alias mktempdir='source $HOME/mktmpdir/mktmpdir.sh'
@@ -149,7 +149,27 @@ function ranger {
 
 alias r='ranger'
 
-if [ -f ~/.asdf ]; then
+if [ -d ~/.asdf ]; then
     . "$HOME/.asdf/asdf.sh"
     . "$HOME/.asdf/completions/asdf.bash"
 fi
+
+if [ -d ~/.cache/rebar3 ]; then 
+    export PATH=/home/bronson/.cache/rebar3/bin:$PATH
+fi
+
+# configuring node modules accessible globally
+NPM_PACKAGES="${HOME}/.local"
+export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+PATH="$NPM_PACKAGES/bin:$PATH"
+unset MANPATH 
+MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export PATH="$PATH:/home/bronson/.foundry/bin"
