@@ -133,6 +133,8 @@ au Filetype c,cpp setlocal ts=4 sw=4 sts=4 noexpandtab
 au Filetype javascript,vue setlocal ts=2 sw=2 sts=2 expandtab
 
 if has("termguicolors")
+ let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+ let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
  set termguicolors
 endif
 

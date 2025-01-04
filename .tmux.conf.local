@@ -43,7 +43,7 @@ tmux_conf_new_session_prompt=false
 # RGB 24-bit colour support (tmux >= 2.2), possible values are:
 #  - true
 #  - false (default)
-tmux_conf_24b_colour=false
+tmux_conf_24b_colour=true
 
 # default theme
 tmux_conf_theme_colour_1="#080808"    # dark gray
@@ -361,7 +361,8 @@ bind , split-window -v
 # split current window vertically
 bind . split-window -h
 
-set -g default-terminal "xterm-256color"
+set -ga terminal-overrides ",*256col*:Tc"
+set -g default-terminal "screen-256color"
 
 # Panel moving with vim integration
 is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
