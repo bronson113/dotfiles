@@ -47,7 +47,7 @@ Plug 'rhysd/vim-lsp-ale'
 
 " Nerdtree related
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommnnter'
+Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 
@@ -70,6 +70,9 @@ Plug 'maximbaz/lightline-trailing-whitespace'
 " Plug 'sheerun/vim-polyglot'
 Plug 'octol/vim-cpp-enhanced-highlight'
 " Plug 'jelera/vim-javascript-syntax'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
 " Plug 'posva/vim-vue'
 " Plug 'leafOfTree/vim-vue-plugin'
 " Plug 'udalov/kotlin-vim'
@@ -396,8 +399,19 @@ let g:ale_sign_warning = ''
 " for Vue
 let g:ale_linter_aliases = {'vue': ['vue', 'javascript']}
 let g:ale_linters = {'vue': ['eslint', 'vls']}
+let g:ale_linters_ignore = {
+\   'typescript': ['tslint'],
+\   'typescriptreact': ['tslint'],
+\}
+let js_fixers = ['prettier', 'eslint']
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': js_fixers,
+\   'javascript.jsx': js_fixers,
+\   'typescript': js_fixers,
+\   'typescriptreact': js_fixers,
+\   'css': ['prettier'],
+\   'json': ['prettier'],
 \   'gleam': ['gleam_format'],
 \}
 let g:ale_fix_on_save = 1
