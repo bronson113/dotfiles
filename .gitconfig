@@ -1,0 +1,9 @@
+[user]
+	email = bronson1013@gmail.com
+	name = Bronson Yen
+
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+
+[url "ssh://git@github.com/"]
+      insteadOf = https://github.com/
