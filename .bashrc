@@ -154,7 +154,7 @@ if [ -d ~/.asdf ]; then
     . "$HOME/.asdf/completions/asdf.bash"
 fi
 
-if [ -d ~/.cache/rebar3 ]; then 
+if [ -d ~/.cache/rebar3 ]; then
     export PATH=/home/bronson/.cache/rebar3/bin:$PATH
 fi
 
@@ -162,7 +162,7 @@ fi
 NPM_PACKAGES="${HOME}/.local"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 PATH="$NPM_PACKAGES/bin:$PATH"
-unset MANPATH 
+unset MANPATH
 MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
 export NVM_DIR="$HOME/.nvm"
@@ -173,3 +173,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export PATH="$PATH:/home/bronson/.foundry/bin"
+export EDITOR="vim"
