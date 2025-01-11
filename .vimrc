@@ -52,8 +52,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 
 " ranger support
-Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'
+" Plug 'francoiscabrol/ranger.vim'
+" Plug 'rbgrouleff/bclose.vim'
 
 " Colorscheme
 Plug 'joshdick/onedark.vim'
@@ -387,8 +387,8 @@ let g:ale_linters = {
 \ }
 let g:ale_linters_explicit = 1
 " ale navigation
-nmap <silent> <leader>k <Plug>(ale_previous_wrap)
-nmap <silent> <leader>j <Plug>(ale_next_wrap)
+" nmap <silent> <leader>k <Plug>(ale_previous_wrap)
+" nmap <silent> <leader>j <Plug>(ale_next_wrap)
 let g:ale_sign_column_always = 1
 " lint only on save
 let g:ale_lint_on_text_changed = 'never'
@@ -415,6 +415,7 @@ let g:ale_fixers = {
 \   'gleam': ['gleam_format'],
 \}
 let g:ale_fix_on_save = 1
+let g:ale_completion_autoimport = 1
 
 " Problem with vue highlighting
 " https://github.com/sheerun/vim-polyglot/issues/292
@@ -487,11 +488,12 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> gr <plug>(lsp-references)
     nmap <buffer> gi <plug>(lsp-implementation)
     nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>cw <plug>(lsp-rename)
+    nmap <buffer> <leader>ciw <plug>(lsp-rename)
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nmap <buffer> gh <plug>(lsp-hover)
     nmap <buffer> K <plug>(lsp-hover)
+    nmap <buffer> <leader>K <plug>(lsp-code-action-float)
     nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
     nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
