@@ -83,6 +83,9 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'gleam-lang/gleam.vim'
 Plug 'thesis/vim-solidity'
 
+" Git
+Plug 'tpope/vim-fugitive'
+
 " Unit Testing
 " Plug 'vim-test/vim-test'
 
@@ -417,6 +420,8 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 let g:ale_completion_autoimport = 1
 
+nnoremap <Leader>e <ESC>:ALEDetail<CR>
+
 " Problem with vue highlighting
 " https://github.com/sheerun/vim-polyglot/issues/292
 let g:polyglot_disabled = ['coffee-script']
@@ -494,8 +499,8 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> gh <plug>(lsp-hover)
     nmap <buffer> K <plug>(lsp-hover)
     nmap <buffer> <leader>K <plug>(lsp-code-action-float)
-    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
-    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+    " nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    " nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go,*.py call execute('LspDocumentFormatSync')
