@@ -33,7 +33,6 @@ Plug 'editorconfig/editorconfig-vim'
 " Track coding time
 Plug 'wakatime/vim-wakatime'
 
-
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -51,10 +50,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 
-" ranger support
-" Plug 'francoiscabrol/ranger.vim'
-" Plug 'rbgrouleff/bclose.vim'
-
 " Colorscheme
 Plug 'joshdick/onedark.vim'
 Plug 'nanotech/jellybeans.vim'
@@ -67,27 +62,16 @@ Plug 'maximbaz/lightline-ale'
 Plug 'maximbaz/lightline-trailing-whitespace'
 
 " Syntax Highlighting
-" Plug 'sheerun/vim-polyglot'
 Plug 'octol/vim-cpp-enhanced-highlight'
 " Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'posva/vim-vue'
-" Plug 'leafOfTree/vim-vue-plugin'
-" Plug 'udalov/kotlin-vim'
-" Plug 'digitaltoad/vim-pug'
-" Plug 'iloginow/vim-stylus'
-" Plug 'ollykel/v-vim'
-" Plug 'jwalton512/vim-blade'
 Plug 'gleam-lang/gleam.vim'
 Plug 'thesis/vim-solidity'
 
 " Git
 Plug 'tpope/vim-fugitive'
-
-" Unit Testing
-" Plug 'vim-test/vim-test'
 
 call plug#end()
 filetype plugin indent on
@@ -127,6 +111,8 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
+set nofixeol
+set nofixendofline
 
 set belloff=all
 
@@ -135,9 +121,10 @@ syntax on
 
 let mapleader = ' '
 
-" different setting for different language
-au Filetype c,cpp setlocal ts=4 sw=4 sts=4 noexpandtab
-au Filetype javascript,vue setlocal ts=2 sw=2 sts=2 expandtab
+" " different setting for different language
+" au Filetype c,cpp setlocal ts=4 sw=4 sts=4 noexpandtab
+" au Filetype javascript,vue setlocal ts=2 sw=2 sts=2 expandtab
+" au Filetype python setlocal ts=4 sw=4 sts=4 expandtab
 
 if has("termguicolors")
  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
@@ -264,23 +251,21 @@ nnoremap ; :
 " inoremap \" \""<ESC>i
 " inoremap {<CR> {<CR>}<ESC>O
 
-" C++ / Python utils
-" TODO: compile according to filetype
-" nnoremap <F6> <ESC>:w<CR>:!Rscript %<CR>
-nnoremap <Leader>r <ESC>:w<CR>:!python3 %<CR>
-nnoremap <Leader>R <ESC>:w<CR>:!python3 % DEBUG GDB<CR>
+" Pwnscript utils
+au Filetype python nnoremap <Leader>r <ESC>:w<CR>:!python3 %<CR>
+au Filetype python nnoremap <Leader>R <ESC>:w<CR>:!python3 % REMOTE<CR>
+au Filetype python nnoremap <Leader>D <ESC>:w<CR>:!python3 % DEBUG<CR>
+au Filetype python nnoremap <Leader>G <ESC>:w<CR>:!python3 % DEBUG GDB<CR>
+
 nnoremap <leader>p <ESC>:/<++><CR>n:nohl<CR>4s
 nnoremap <leader><leader> <ESC>:nohl<CR>
-" nnoremap <leader>c <ESC>:w<CR>:!g++ -std=c++17 -O2 -Wall -Wextra -Wshadow %<CR>
-" nnoremap <leader>d <ESC>:!./a.out<CR>
 nnoremap <C-Y> <C-r>
-" nnoremap <F9> <ESC>:w<CR>:!g++ -std=c++17 -O2 -Wall -Wextra -Wshadow %<CR>
-" nnoremap <F10> :!./a.out<CR>
-" nnoremap <F11> :!./a.out < in<CR>
-" nnoremap <F12> :!kotlinc % -include-runtime -d out.jar && echo "Compile finished" && java -jar out.jar<CR>
 
 " Create new buffer on split
 nnoremap <Leader>n <ESC>:vnew<CR>
+
+" Global search
+nnoremap <Leader>/ <ESC>:Rg<CR>
 
 " Find file
 nnoremap <Leader>f <ESC>:Files<CR>
@@ -339,9 +324,6 @@ let g:NERDToggleCheckAllLines=1
 
 " open NERDTree when opening vim
 let g:NERDTreeHijackNetrw = 1
-" let g:ranger_replace_netrw = 1
-" show hidden files too
-" let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
 
 " Indent Guide
 " let g:indentLine_setColors = 0
@@ -422,14 +404,6 @@ let g:ale_completion_autoimport = 1
 
 nnoremap <Leader>e <ESC>:ALEDetail<CR>
 
-" Problem with vue highlighting
-" https://github.com/sheerun/vim-polyglot/issues/292
-let g:polyglot_disabled = ['coffee-script']
-
-" configure for nvim
-let g:python_host_prog = '~/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
-
 " coc
 if executable("node")
     let g:coc_global_extensions = ['coc-clangd', 'coc-pyright', 'coc-sh']
@@ -480,6 +454,14 @@ if executable('pylsp')
         \ 'name': 'pylsp',
         \ 'cmd': {server_info->['pylsp']},
         \ 'allowlist': ['python'],
+        \ })
+endif
+
+if executable('svls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'svls',
+        \ 'cmd': {server_info->['svls']},
+        \ 'whitelist': ['systemverilog'],
         \ })
 endif
 

@@ -91,10 +91,9 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias python='python3.10'
 alias pwninit='pwninit --template-path ~/.vim/templates/pwninit_tmp.py --template-bin-name elf'
 alias desk='cd /mnt/c/Users/brons'
-alias purdue='cd /mnt/c/Users/brons/purdue/2024-fall'
+alias purdue='cd /mnt/c/Users/brons/purdue/2025-spring'
 alias ctf='cd /mnt/c/Users/brons/ctf'
 alias mktmpdir='source $HOME/mktmpdir/mktmpdir.sh'
 alias mktempdir='source $HOME/mktmpdir/mktmpdir.sh'
@@ -174,3 +173,6 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="$PATH:/home/bronson/.foundry/bin"
 export EDITOR="vim"
+export PATH=/home/bronson/.cache/rebar3/bin:$PATH
+
+export TERMINFO=/etc/terminfo
